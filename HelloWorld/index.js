@@ -2,15 +2,20 @@
 "use strict";
 
 var mHttp = require('http');
-
+var oResponse = {
+    "returnCode": "1",
+    "returnMessage": "Everything OK",
+    "returnData": null
+}
 mHttp.createServer(function (request, response) {
    // Send the HTTP header 
    // HTTP Status: 200 : OK
    // Content Type: text/plain
-   response.writeHead(200, {'Content-Type': 'text/plain'});
+   response.writeHead(200, {'Content-Type': 'application/json'});
    
-   // Send the response body as "Hello World"
-   response.end('Hello World\n');
+   response.write(JSON.stringify(oResponse));
+
+   response.end();
 }).listen(8081);
 
 // Console will print the message
